@@ -1,0 +1,120 @@
+#contact-container {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+}
+
+#green-background-strip {
+    /*Position*/
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%);
+	z-index: 0;
+	
+	/*Size*/
+	height: calc(980/1080*100vh);
+	width: calc(600/1920*100vw);
+	min-width: 400px; /*will have to do separate rules for screens with width smaller than 600px*/
+	
+	background-image: url("../images/contact/green-grain-tile.png");
+	background-repeat: repeat;
+    border-radius: 0 0 25px 25px;
+}
+
+#contact-postcard {
+    /*Position*/
+	position: absolute;
+	top: calc(190/1080*100vh);
+	left:50%;
+	transform: translate(-50%);
+	
+	/*Size*/
+	min-width: calc(1000/600*400px);
+	min-height: 400px; /* TODO: top + bottom margins + title + 3 labels + 3 inputs*/ 
+	width: calc(1000/1920*100vw);
+	height: calc(600/1080*100vh); /*calc(600/1080*100vh) = 56vh */	
+	padding: calc(0.05*56vh) calc(55/1920*100vw);
+	background-image: url("../images/contact/paper-grain-tile.png");
+	background-repeat: repeat;
+	z-index: 1;
+}
+
+#contact-postcard input {
+	/*Position*/
+	display: block;
+	
+	margin: 0 0 calc(0.05*56vw) calc(15/1920*100vw);
+	background-color: inherit;
+	border-width: 0 0 3px 0;
+}
+
+#contact-postcard .contact-message {
+	width: calc(100% - 2*15/1920*100vw); /*100% - 2*margins */
+}
+
+
+#contact-postcard label {
+	/*Position*/
+	display: block;
+	margin-left: calc(15/1920*100vw);
+	
+	/*Size*/
+	font-size: calc(0.05*56vh);
+	
+	color: #939393;
+}
+
+#contact-postcard #stamp {
+	/*Position*/
+	position: absolute;
+	top: 5%; /*5% margin*/
+	left: 95%; /*-5% margin*/
+	transform: translate(-100%, 0);
+	
+	/*Size*/
+	width: calc(215/1920*100vw);
+	height: calc(135/1920*100vw);
+	
+	-webkit-filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
+	/*The stamp cutout will be created using crisp radial gradients*/
+	background: radial-gradient(
+		transparent 0px, 
+		transparent 4px, 
+		white 4px,
+		white
+	);
+  
+	/*reducing the gradient size*/
+	background-size: 20px 20px;
+	/*Offset to move the holes to the edge*/
+	background-position: -10px -10px;
+}
+
+#stamp .stamp-background {
+	background-color: #4e4e4e;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+}
+
+#contact-postcard #stamp-logo {
+	/*Position*/
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+	/*Size*/
+	width: calc(100/1920*100vw);
+	height: calc(105/1920*100vw);
+	background-size: 100% auto;
+	
+	background-image: url("../images/contact/logo.jpg");
+	background-repeat: no-repeat;
+}
+
+#contact-postcard h1 {
+	font-size: calc(0.1*56vh);
+	margin: 0 0 calc(0.1*56vh) 0;
+}

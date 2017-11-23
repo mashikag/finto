@@ -1,0 +1,30 @@
+<div id="menu-wrapper">
+	<template ngFor let-menuItem [ngForOf]="menuItems">
+	<div 
+		id="{{menuItem.name}}-outer-selection-quadrant" 
+		class="selection-quadrant" 
+		[ngClass]="getSelectionQuadrantClasses(menuItem.name)"></div>		
+	<div 
+		class="selection-quadrant-overlay selection-quadrant"
+		[ngClass]="getSelectionQuadrantOverlayClasses(menuItem.name)"
+		(mouseover)="onMouseOverMenuItem(menuItem.name)" 
+		(mouseout)="onMouseLeftMenuItem(menuItem.name)"
+		routerLink="{{getRouteFromName(menuItem.name)}}"></div>
+	</template>
+	
+	<div 
+		id="face-background-circle" 
+		class="centered-item"></div>
+	<div 
+		id="face" 
+		class="centered-item"></div>
+	<div 
+		id="right-eye">
+		<div id="right-eyelid" class="blinking-eye"></div>
+		
+	</div>
+	<div 
+		id="left-eye">
+		<div id="left-eyelid" class="blinking-eye"></div>
+	</div>
+</div>

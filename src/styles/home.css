@@ -1,0 +1,172 @@
+#menu-wrapper{
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+.centered-item{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/*---FACE AND FACE BACKGROUND STYLES---*/
+#face{
+	background-image: url("../images/ma-twarz3-grain.png");
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	height: 32vh;
+	width: calc(32vh*0.956022945); /*ratio width to height is 0.956022945*/
+}
+#face-background-circle{
+	background-image: url("../images/inner-circle.png");
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	height: 30vh;
+	width: 30vh; /*the circle has width equal to height*/
+}
+
+#right-eye{
+/*
+<height>x<width>
+face: 500x523px
+right eye: 41x12px
+should position at 154x222px on the face image
+initially positioned at 500/2x523/2px = 250x261.5px
+need to translate by: 250-154x261.5-222px = -96x-39.5px
+in relative -96/500*(32vh*0.956022945) x -39.5/523*32vh
+*/
+	position:absolute;
+	/*0,15 - 0 100%
+	12,5 - 25% 33.3%
+	22,1 - 45.83% 6.67%
+	38,0 - 79.16% 0
+	47,3 - 96% 20%
+	48,5 - 100% 33.3%
+	48,15 - 100% 100%*/
+	clip-path: polygon(0 100%, 25% 33.3%, 45.83% 6.67%, 79.16% 0, 96% 20%, 100% 33.3%, 100% 100%);
+	width: calc(32vh*0.956022945*44/500); /*even though the width of the eye image is actually 12px, 44/500 looks better in chrome....*/
+	height: calc(32vh*15/523); /*even though the height of the eye image is actually 12px, 15/523 looks better in chrome....*/
+	top: 50%;
+	left: 50%;
+	transform: translate(calc(-99/500*(32vh*0.956022945)), calc(-42.5/523*32vh));
+	
+}
+#right-eyelid{
+	position: absolute;
+/*41x12px (width height of the image)*/
+	background-image: url("../images/prawa-powieka.png");
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	width: calc(32vh*0.956022945*0.09);
+	height: calc(32vh*0.03);
+}
+#left-eye{
+/*
+<height>x<width>
+face: 500x523px
+right eye: 46x15px
+should position at 305x218px on the face image
+initially when centered positioned at 500/2x523/2px = 250x261.5px
+need to translate by: 305-250x218-261.5px = 55x-43.5px
+in relative 55/500*(32vh*0.956022945) x -43.5/523*32vh
+*/
+	position:absolute;
+	/*
+	0, 7 - 0, 47%
+	10, 2 - 21.74%, 13.33%
+	27, 2 - 58.7%, 13.33%
+	36, 5 - 78.26%, 33.33%
+	45,14 - 100%, 100%
+	0, 14 - 0%, 100%*/
+	clip-path: polygon(0 47%, 21.74% 13.33%, 58.7% 13.33%, 78.26% 33.33%, 100% 100%, 0% 100%);
+	width: calc(32vh*0.956022945*46/500); /*even though the width of the eye image is actually 12px, 44/500 looks better in chrome....*/
+	height: calc(32vh*15/523); /*even though the height of the eye image is actually 12px, 15/523 looks better in chrome....*/
+	top: 50%;
+	left: 50%;
+	transform: translate(calc(55/500*(32vh*0.956022945)), calc(-43.5/523*32vh));
+	
+}
+#left-eyelid{
+	background-image: url("../images/lewa-powieka-grained-scaled.png");
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	width: calc(32vh*0.956022945*46/500);
+	height: calc(32vh*15/523);
+}
+.blinking-eye {
+	animation-name: blinking-eye-animation;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: cubic-bezier(0, 0, 0, 1);
+}
+@keyframes blinking-eye-animation {
+	from {
+		transform: translate(0,0);
+	}
+	to {
+		transform: translate(0,-100%);
+	}
+}
+
+/*---SELECTION QUADRANT STYLES---*/
+.selection-quadrant{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	/*0.662251656 ratio of inner circle to outer circle diameter (height)*/
+	height: calc(30vh/0.662251656/2);
+	width: calc(30vh/0.662251656/2);
+	transition: transform .5s ease-out;
+}
+#top-left-outer-selection-quadrant{
+	background-image: url("../images/outer-circle-prices.png");
+}
+#bottom-right-outer-selection-quadrant{
+	background-image: url("../images/outer-circle-abot.png");
+}
+#bottom-left-outer-selection-quadrant{
+	background-image: url("../images/outer-circle-contact.png");
+}
+#top-right-outer-selection-quadrant{
+	background-image: url("../images/outer-circle-portfolio.png");
+}
+.top-left-outer-quadrant{
+	transform: translate(-100%, -100%);
+}
+.bottom-right-outer-quadrant{
+}
+.bottom-left-outer-quadrant{
+	transform: translate(-100%, 0);
+}
+.top-right-outer-quadrant{
+	transform: translate(0, -100%);
+}
+.top-left-outer-quadrant-slide-out{
+	/*Gap size is 1.49999999916vh = 25px(gap size) / 755px(outer circle height) * (30vh/0.662251656) (CSS Relative Circle Height)*/
+	transform: translate(calc(-22.6499999873vh + 1.49999999916vh/2), calc(-22.6499999873vh + 1.49999999916vh/2)) !important;
+}
+.bottom-right-outer-quadrant-slide-out{
+	/*Gap size is 1.49999999916vh = 25px(gap size) / 755px(outer circle height) * (30vh/0.662251656) (CSS Relative Circle Height)*/
+	transform: translate(calc(-1.49999999916vh/2), calc(-1.49999999916vh/2)) !important;
+}
+.bottom-left-outer-quadrant-slide-out{
+	/*Gap size is 1.49999999916vh = 25px(gap size) / 755px(outer circle height) * (30vh/0.662251656) (CSS Relative Circle Height)*/
+	transform: translate(calc(-22.6499999873vh + 1.49999999916vh/2), calc(-1.49999999916vh/2)) !important;
+}
+.top-right-outer-quadrant-slide-out{
+	/*Gap size is 1.49999999916vh = 25px(gap size) / 755px(outer circle height) * (30vh/0.662251656) (CSS Relative Circle Height)*/
+	transform: translate(calc(-1.49999999916vh/2), calc(-22.6499999873vh + 1.49999999916vh/2)) !important;
+}
+.selection-quadrant-overlay{
+	z-index: 1;
+}
+
+/*clip path*/
+{
+clip-path: polygon(0 31.25%, 25% 10.42%, 45.83% 2.09%, 79.16% 0, 96% 6.25%, 100% 10.5%, 100% 100%);
+}
